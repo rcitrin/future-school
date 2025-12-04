@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI-Driven High School</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .modal-bg {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+
+    <!-- Language Translations Data -->
+    <script>
+        // Data structure containing all text content for different languages
+        const translations = {
+            en: {
+                title: "How AI Would Redesign High School",
+                subtitle: "Imagine your education is completely customized, prioritizing skills over standardized tests. That’s the core of the AI-driven high school.",
+                select_lang: "Select Language:",
+                btn_1_title: "Personalized Learning Path",
+                btn_2_title: "Curriculum Shift: Skills Over Facts",
+                btn_3_title: "Teachers Become Expert Mentors",
+                btn_4_title: "Gamified Progress: XP and Mastery",
+                modal_1_title: "1. Your Personalized Learning Path",
+                modal_1_p1_heading: "No Fixed Schedule",
+                modal_1_p1_body: "You wouldn't follow a rigid bell schedule or be locked into courses just because of your age. The AI would analyze your real-time performance, learning style, and personal interests to build a **daily curriculum unique to you**. You might spend an hour mastering an advanced math concept with an AI tutor and the next hour working on a collaborative project with a team from a different grade.",
+                modal_1_p2_heading: "The 'Why'",
+                modal_1_p2_body: "The AI knows that mass-production schooling creates knowledge gaps and boredom. This change ensures you’re always challenged, never overwhelmed, and always learning the most relevant thing **you** need next.",
+                modal_2_title: "2. The Curriculum Shift: Skills Over Facts",
+                modal_2_p1_heading: "Goodbye Memorization",
+                modal_2_p1_body: "Subjects like basic algebra formulas or historical dates you can look up in two seconds? Gone. The AI takes care of those routine facts.",
+                modal_2_p2_heading: "Hello Critical Thinking",
+                modal_2_p2_body: "Every course would revolve around **critical thinking, complex problem-solving, and creativity**. Since AI will automate most cognitive tasks, the only valuable human skills remaining are those involving judgment, ethics, synthesis, and innovation.",
+                modal_2_p3_heading: "Integrated Learning",
+                modal_2_p3_body: "Instead of \"Chemistry\" class, you’d have a **\"Resource Sustainability\" module** where you apply chemistry, economics, and ethics to solve a local pollution problem. Subjects would merge to teach you how the real world works.",
+                modal_3_title: "3. Teachers Become Expert Mentors",
+                modal_3_p1_heading: "No More Lecturing",
+                modal_3_p1_body: "Your human teacher (now called a \"Human Mentor\" or \"Coach\") would no longer stand at a whiteboard delivering information. The AI handles all lecture content, grading, and individualized instruction.",
+                modal_3_p2_heading: "Focus on EQ and Ethics",
+                modal_3_p2_body: "Mentors focus 100% on **emotional intelligence (EQ), collaboration, discussion, and ethical debate**. They guide your team projects, mediate conflicts, and help you develop the human judgment necessary to use AI responsibly.",
+                modal_4_title: "4. Gamified Progress: XP and Mastery",
+                modal_4_p1_heading: "Level Up, Don't Cram",
+                modal_4_p1_body: "Say goodbye to grades (A, B, C) and high-stakes standardized tests. The AI knows these are outdated, stressful, and don't measure real ability. Instead, the focus is on **advancement**. You progress not by scoring points on a test, but by proving your competence.",
+                modal_4_p2_heading: "Achievement Unlocked: Mastery Units",
+                modal_4_p2_body: "Your progress is tracked using a live **XP (Experience Points) total** and **Mastery Units**. When you complete a module (e.g., \"Advanced Data Synthesis\" or \"Effective Team Communication\"), the AI verifies your skill application through projects and simulations. Once verified, you earn an **Achievement Badge** and the unit is unlocked, proving permanent mastery. This is the new transcript.",
+                modal_4_p3_heading: "High-Level Quests and Ranks",
+                modal_4_p3_body: "By your final years, your learning path is defined by **High-Level Quests**—large, complex projects that simulate professional work (e.g., \"Design a Local Renewable Energy Grid\"). Successfully completing these Quests determines your **Rank**, which directly aligns you with specific career pipelines or advanced academic institutions.",
+                close: "Close"
+            },
+            es: {
+                title: "Cómo la IA Rediseñaría la Escuela Secundaria",
+                subtitle: "Imagina que tu educación está completamente personalizada, priorizando las habilidades sobre los exámenes estandarizados. Ese es el núcleo de la escuela secundaria impulsada por la IA.",
+                select_lang: "Seleccionar Idioma:",
+                btn_1_title: "Ruta de Aprendizaje Personalizada",
+                btn_2_title: "Cambio Curricular: Habilidades sobre Datos",
+                btn_3_title: "Los Profesores se Convierten en Mentores Expertos",
+                btn_4_title: "Progreso Gamificado: XP y Maestría",
+                modal_1_title: "1. Tu Ruta de Aprendizaje Personalizada",
+                modal_1_p1_heading: "Sin Horario Fijo",
+                modal_1_p1_body: "No seguirías un horario de campana rígido ni estarías obligado a tomar cursos solo por tu edad. La IA analizaría tu rendimiento en tiempo real, tu estilo de aprendizaje y tus intereses personales para construir un **plan de estudios diario único para ti**. Podrías pasar una hora dominando un concepto matemático avanzado con un tutor de IA y la siguiente hora trabajando en un proyecto colaborativo con un equipo de un grado diferente.",
+                modal_1_p2_heading: "El 'Por Qué'",
+                modal_1_p2_body: "La IA sabe que la escolarización de producción masiva crea lagunas de conocimiento y aburrimiento. Este cambio garantiza que siempre seas desafiado, nunca abrumado y que siempre aprendas lo más relevante que **necesitas** a continuación.",
+                modal_2_title: "2. El Cambio Curricular: Habilidades sobre Datos",
+                modal_2_p1_heading: "Adiós a la Memorización",
+                modal_2_p1_body: "¿Temas como fórmulas básicas de álgebra o fechas históricas que puedes buscar en dos segundos? Desaparecidos. La IA se encarga de esos datos rutinarios.",
+                modal_2_p2_heading: "Hola Pensamiento Crítico",
+                modal_2_p2_body: "Cada curso giraría en torno al **pensamiento crítico, la resolución compleja de problemas y la creatividad**. Dado que la IA automatizará la mayoría de las tareas cognitivas, las únicas habilidades humanas valiosas que quedan son aquellas que implican juicio, ética, síntesis e innovación.",
+                modal_2_p3_heading: "Aprendizaje Integrado",
+                modal_2_p3_body: "En lugar de la clase de \"Química\", tendrías un **módulo de \"Sostenibilidad de Recursos\"** donde aplicas química, economía y ética para resolver un problema de contaminación local. Las materias se fusionarían para enseñarte cómo funciona el mundo real.",
+                modal_3_title: "3. Los Profesores se Convierten en Mentores Expertos",
+                modal_3_p1_heading: "No Más Conferencias",
+                modal_3_p1_body: "Tu profesor humano (ahora llamado \"Mentor Humano\" o \"Coach\") ya no estaría frente a una pizarra impartiendo información. La IA maneja todo el contenido de las clases, la calificación y la instrucción individualizada.",
+                modal_3_p2_heading: "Enfoque en la Inteligencia Emocional (EQ) y la Ética",
+                modal_3_p2_body: "Los mentores se centran al 100% en la **inteligencia emocional (EQ), la colaboración, el debate y la discusión ética**. Guían tus proyectos en equipo, median en los conflictos y te ayudan a desarrollar el juicio humano necesario para usar la IA de manera responsable.",
+                modal_4_title: "4. Progreso Gamificado: XP y Maestría",
+                modal_4_p1_heading: "Sube de Nivel, No Estudies de Memoria",
+                modal_4_p1_body: "Dile adiós a las calificaciones (A, B, C) y a los exámenes estandarizados de alto riesgo. La IA sabe que son obsoletos, estresantes y no miden la capacidad real. En cambio, el foco está en el **avance**. Progresas no por sumar puntos en una prueba, sino por demostrar tu competencia.",
+                modal_4_p2_heading: "Logro Desbloqueado: Unidades de Maestría",
+                modal_4_p2_body: "Tu progreso se rastrea utilizando un total de **XP (Puntos de Experiencia)** en vivo y **Unidades de Maestría**. Cuando completas un módulo (p. ej., \"Síntesis de Datos Avanzada\" o \"Comunicación Efectiva en Equipo\"), la IA verifica la aplicación de tu habilidad a través de proyectos y simulaciones. Una vez verificado, obtienes una **Insignia de Logro** y la unidad se desbloqueada, lo que demuestra maestría permanente. Este es el nuevo expediente académico.",
+                modal_4_p3_heading: "Misiones de Alto Nivel y Rangos",
+                modal_4_p3_body: "En tus últimos años, tu ruta de aprendizaje se define por **Misiones de Alto Nivel**—proyectos grandes y complejos que simulan el trabajo profesional (p. ej., \"Diseñar una Red de Energía Renovable Local\"). Completar con éxito estas Misiones determina tu **Rango**, lo que te alinea directamente con pipelines de carrera específicos o instituciones académicas avanzadas.",
+                close: "Cerrar"
+            },
+            ht: {
+                title: "Kòman IA a ta Redesinye Lekòl Segondè",
+                subtitle: "Imajine edikasyon ou totalman pèsonalize, ki bay priyorite a ladrès olye de tès estanda. Sa a se nwayo lekòl segondè ki mache ak IA.",
+                select_lang: "Chwazi Lang:",
+                btn_1_title: "Chemen Aprantisaj Pèsonalize",
+                btn_2_title: "Chanjman nan Kourikoulòm: Ladrès olye de Reyalite",
+                btn_3_title: "Pwofesè Vin Mentò Ekspè",
+                btn_4_title: "Pwogrè Gamifye: XP ak Metriz",
+                modal_1_title: "1. Chemen Aprantisaj Pèsonalize Ou",
+                modal_1_p1_heading: "Pa Gen Orè Fiks",
+                modal_1_p1_body: "Ou pa t ap suiv yon orè klòch rijid oswa ou pa t ap bloke nan kou jis poutèt laj ou. IA a t ap analize pèfòmans ou an tan reyèl, style aprantisaj ou, ak enterè pèsonèl ou pou konstwi yon **kourikoulòm chak jou inik pou ou**. Ou ta ka pase yon èdtan ap metrize yon konsèp matematik avanse avèk yon pwofesè IA ak lòt èdtan ap travay sou yon pwojè kolaboratif ak yon ekip ki soti nan yon klas diferan.",
+                modal_1_p2_heading: "Rezon an 'Poukisa'",
+                modal_1_p2_body: "IA a konnen ke lekòl ki pwodui an mas kreye twou nan konesans ak annwi. Chanjman sa a asire ou toujou defye, pa janm akable, epi ou toujou ap aprann bagay ki pi enpòtan ou **bezwen** apre.",
+                modal_2_title: "2. Chanjman nan Kourikoulòm: Ladrès olye de Reyalite",
+                modal_2_p1_heading: "Adye Memorizasyon",
+                modal_2_p1_body: "Sijè tankou fòmil aljèb de baz oswa dat istorik ou ka chèche nan de segonn? Yo ale. IA a pran swen reyalite woutin sa yo.",
+                modal_2_p2_heading: "Bonjou Panse Kritik",
+                modal_2_p2_body: "Chak kou t ap vire otou **panse kritik, rezoud pwoblèm konplèks, ak kreyativite**. Piske IA ap otomatize pifò travay mantal, sèl ladrès imen ki rete ki gen valè se sa yo ki enplike jijman, etik, sentèz, ak inovasyon.",
+                modal_2_p3_heading: "Aprantisaj Entegre",
+                modal_2_p3_body: "Olye pou w gen klas \"Chimi\", ou t ap gen yon **modil \"Dirabilite Resous\"** kote ou aplike chimi, ekonomi, ak etik pou rezoud yon pwoblèm polisyon lokal. Sijè yo t ap fusionn pou anseye w kòman mond reyèl la fonksyone.",
+                modal_3_title: "3. Pwofesè Vin Mentò Ekspè",
+                modal_3_p1_heading: "Pa Gen Konferans Ankò",
+                modal_3_p1_body: "Pwofesè imen ou an (kounye a yo rele yon \"Mentò Imen\" oswa \"Coach\") pa t ap kanpe devan yon tablo pou bay enfòmasyon ankò. IA a jere tout kontni kou, nòt, ak enstriksyon endividyalize.",
+                modal_3_p2_heading: "Konsantre sou EQ ak Etik",
+                modal_3_p2_body: "Mentò yo konsantre 100% sou **entelijans emosyonèl (EQ), kolaborasyon, diskisyon, ak deba etik**. Yo gide pwojè ekip ou yo, medyatè konfli, epi ede w devlope jijman imen ki nesesè pou itilize IA a avèk responsablite.",
+                modal_4_title: "4. Pwogrè Gamifye: XP ak Metriz",
+                modal_4_p1_heading: "Monte Nivo, Pa Fè Bloke",
+                modal_4_p1_body: "Di adye a nòt (A, B, C) ak tès estanda ki gen gwo enpak. IA a konnen yo demode, estrèsan, epi yo pa mezire kapasite reyèl. Olye de sa, konsantre a se sou **avansman**. Ou pwogrese pa paske ou fè nòt nan yon tès, men paske ou pwouve konpetans ou.",
+                modal_4_p2_heading: "Atenn Dekloke: Inite Metriz",
+                modal_4_p2_body: "Pwogrè ou swiv avèk yon total **XP (Pwen Eksperyans)** an dirèk ak **Inite Metriz**. Lè ou fin fè yon modil (pa egzanp, \"Sentèz Done Avanse\" oswa \"Kominikasyon Ekip Efektif\"), IA a verifye aplikasyon ladrès ou atravè pwojè ak similyasyon. Yon fwa verifye, ou touche yon **Badj Akonplisman** epi inite a debloke, sa ki pwouve metriz pèmanan. Sa a se nouvo transkripsyon an.",
+                modal_4_p3_heading: "Quests Wo Nivo ak Rang",
+                modal_4_p3_body: "Nan dènye ane ou yo, chemen aprantisaj ou defini pa **Quests Wo Nivo**—gwo pwojè konplèks ki similye travay pwofesyonèl (pa egzanp, \"Desine yon Rezo Enèji Renouvlab Lokal\"). Konplete Quests sa yo avèk siksè detèmine **Rang** ou, ki dirèkteman aliyen ou avèk tiyo karyè espesifik oswa enstitisyon akademik avanse.",
+                close: "Fèmen"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Function to update all text content based on the selected language
+        function updateContent(lang) {
+            currentLang = lang;
+            const content = translations[lang];
+
+            // Update main page elements
+            document.getElementById('main-title').textContent = content.title;
+            document.getElementById('main-subtitle').textContent = content.subtitle;
+            document.getElementById('select-lang-label').textContent = content.select_lang;
+
+            // Update button titles
+            document.getElementById('btn-1').textContent = content.btn_1_title;
+            document.getElementById('btn-2').textContent = content.btn_2_title;
+            document.getElementById('btn-3').textContent = content.btn_3_title;
+            document.getElementById('btn-4').textContent = content.btn_4_title;
+
+            // Update modal content (using data attributes to map)
+            document.querySelectorAll('[data-modal-id]').forEach(modalElement => {
+                const modalId = modalElement.dataset.modalId;
+                const modalData = content[`modal_${modalId}_content`];
+
+                // Update generic modal title
+                document.getElementById(`modal-${modalId}-title`).textContent = content[`modal_${modalId}_title`];
+
+                // Update specific content blocks inside the modal
+                document.getElementById(`modal-${modalId}-p1-heading`).textContent = content[`modal_${modalId}_p1_heading`];
+                document.getElementById(`modal-${modalId}-p1-body`).innerHTML = content[`modal_${modalId}_p1_body`];
+
+                if (document.getElementById(`modal-${modalId}-p2-heading`)) {
+                    document.getElementById(`modal-${modalId}-p2-heading`).textContent = content[`modal_${modalId}_p2_heading`];
+                    document.getElementById(`modal-${modalId}-p2-body`).innerHTML = content[`modal_${modalId}_p2_body`];
+                }
+
+                if (document.getElementById(`modal-${modalId}-p3-heading`)) {
+                    document.getElementById(`modal-${modalId}-p3-heading`).textContent = content[`modal_${modalId}_p3_heading`];
+                    document.getElementById(`modal-${modalId}-p3-body`).innerHTML = content[`modal-${modalId}_p3_body`];
+                }
+
+                // Update close button
+                modalElement.querySelector('.modal-close-btn').textContent = content.close;
+            });
+        }
+
+        // Function to open a specific modal
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        // Function to close all modals
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // Initialize content on load and set up event listeners
+        window.onload = function() {
+            // Initial content load
+            updateContent(currentLang);
+
+            // Language selector event listener
+            document.getElementById('lang-select').addEventListener('change', function(event) {
+                updateContent(event.target.value);
+            });
+
+            // Set up modal open/close listeners
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                const targetId = button.dataset.modalTarget;
+                button.addEventListener('click', () => openModal(targetId));
+            });
+
+            document.querySelectorAll('.modal-bg, .modal-close-btn').forEach(element => {
+                element.addEventListener('click', (event) => {
+                    // Check if the click was directly on the background or the close button
+                    if (event.target.classList.contains('modal-bg') || event.target.classList.contains('modal-close-btn')) {
+                        const modal = event.target.closest('.modal-bg');
+                        if (modal) {
+                            closeModal(modal.id);
+                        }
+                    }
+                });
+            });
+        };
+    </script>
+
+    <!-- Header and Language Selector -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-indigo-600">Future School</h1>
+            <div class="flex items-center space-x-2">
+                <label id="select-lang-label" for="lang-select" class="text-gray-700 text-sm font-medium">Select Language:</label>
+                <select id="lang-select" class="border border-gray-300 rounded-lg p-2 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="en">English</option>
+                    <option value="es">Español (Spanish)</option>
+                    <option value="ht">Kreyòl Ayisyen (Haitian Creole)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Title and Subtitle -->
+        <div class="text-center mb-12 bg-white p-8 rounded-xl shadow-lg">
+            <h2 id="main-title" class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">How AI Would Redesign High School</h2>
+            <p id="main-subtitle" class="text-xl text-gray-600 max-w-3xl mx-auto">Imagine your education is completely customized, prioritizing skills over standardized tests. That’s the core of the AI-driven high school.</p>
+        </div>
+
+        <!-- Interactive Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Card 1: Personalized Learning Path -->
+            <div class="bg-white rounded-xl shadow-2xl p-6 transition transform hover:scale-[1.02] hover:shadow-indigo-300 duration-300 cursor-pointer" data-modal-target="modal-1">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="p-3 bg-indigo-500 rounded-full text-white">
+                        <!-- Icon: User & Gear -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M21 15v4a2 2 0 0 1-2 2h-1"/><path d="M14.7 9.3a1 1 0 0 0 0 1.4L16 12l-1.3 1.3a1 1 0 0 0 1.4 1.4L17.4 13l1.3 1.3a1 1 0 0 0 1.4-1.4L18.8 12l1.3-1.3a1 1 0 0 0-1.4-1.4L17.4 11l-1.3-1.3a1 1 0 0 0-1.4 0z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800" id="btn-1">Personalized Learning Path</h3>
+                </div>
+                <p class="text-gray-500">No rigid schedules. AI analyzes your real-time performance and interests to create a unique daily curriculum.</p>
+                <button class="mt-4 text-indigo-600 font-medium hover:text-indigo-800 transition duration-150" data-modal-target="modal-1">Read More &rarr;</button>
+            </div>
+
+            <!-- Card 2: Curriculum Shift -->
+            <div class="bg-white rounded-xl shadow-2xl p-6 transition transform hover:scale-[1.02] hover:shadow-indigo-300 duration-300 cursor-pointer" data-modal-target="modal-2">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="p-3 bg-green-500 rounded-full text-white">
+                        <!-- Icon: Atom & Thinking Head -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 19c-1.1-1.38-2.6-2.22-4-2.5V11a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5.5c-1.4.28-2.9 1.12-4 2.5"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M22 12h-2"/><path d="M4 12H2"/><path d="M20.4 3.6l-1.4 1.4"/><path d="M5.6 18.4l-1.4 1.4"/><path d="M3.6 20.4l1.4-1.4"/><path d="M18.4 5.6l1.4-1.4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800" id="btn-2">Curriculum Shift: Skills Over Facts</h3>
+                </div>
+                <p class="text-gray-500">Memorization is out. Focus is on integrated learning, critical thinking, ethics, and complex problem-solving.</p>
+                <button class="mt-4 text-indigo-600 font-medium hover:text-indigo-800 transition duration-150" data-modal-target="modal-2">Read More &rarr;</button>
+            </div>
+
+            <!-- Card 3: Expert Mentors -->
+            <div class="bg-white rounded-xl shadow-2xl p-6 transition transform hover:scale-[1.02] hover:shadow-indigo-300 duration-300 cursor-pointer" data-modal-target="modal-3">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="p-3 bg-yellow-500 rounded-full text-white">
+                        <!-- Icon: Discussion Bubbles -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a2.5 2.5 0 0 0-5 0v1.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.5z"/><path d="M15 15.5a2.5 2.5 0 0 1-5 0v-1.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1.5z"/><path d="M9 9.5a2.5 2.5 0 0 0-5 0v1.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.5z"/><circle cx="12" cy="12" r="10"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800" id="btn-3">Teachers Become Expert Mentors</h3>
+                </div>
+                <p class="text-gray-500">Mentors replace lecturers. Their focus shifts entirely to emotional intelligence, ethical debate, and team collaboration.</p>
+                <button class="mt-4 text-indigo-600 font-medium hover:text-indigo-800 transition duration-150" data-modal-target="modal-3">Read More &rarr;</button>
+            </div>
+
+            <!-- Card 4: Gamified Progress -->
+            <div class="bg-white rounded-xl shadow-2xl p-6 transition transform hover:scale-[1.02] hover:shadow-indigo-300 duration-300 cursor-pointer" data-modal-target="modal-4">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="p-3 bg-red-500 rounded-full text-white">
+                        <!-- Icon: Badge/Award -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.5l-5.13-3.17c-.57-.35-1.28-.5-1.99-.38-.68.12-1.3.43-1.8.84l-1.5 1.25c-.4.33-.6.76-.6 1.21V22h20v-3.75c0-.45-.2-.88-.6-1.21l-1.5-1.25c-.5-.41-1.12-.72-1.8-.84-.71-.12-1.42.03-1.99.38L12 17.5z"/><path d="M12 17.5L6.87 14.33"/><path d="M12 17.5L17.13 14.33"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800" id="btn-4">Gamified Progress: XP and Mastery</h3>
+                </div>
+                <p class="text-gray-500">Grades are replaced by XP, Mastery Units, and High-Level Quests, creating a true, permanent record of competence.</p>
+                <button class="mt-4 text-indigo-600 font-medium hover:text-indigo-800 transition duration-150" data-modal-target="modal-4">Read More &rarr;</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal 1: Personalized Learning Path -->
+    <div id="modal-1" data-modal-id="1" class="modal-bg hidden fixed inset-0 z-50 flex items-center justify-center p-4" aria-labelledby="modal-1-title" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-8 relative">
+            <h3 id="modal-1-title" class="text-3xl font-bold text-indigo-600 mb-6 border-b pb-2">1. Your Personalized Learning Path</h3>
+            
+            <div class="space-y-6">
+                <div>
+                    <h4 id="modal-1-p1-heading" class="text-xl font-semibold text-gray-800 mb-2">No Fixed Schedule</h4>
+                    <p id="modal-1-p1-body" class="text-gray-600">You wouldn't follow a rigid bell schedule or be locked into courses just because of your age. The AI would analyze your real-time performance, learning style, and personal interests to build a **daily curriculum unique to you**. You might spend an hour mastering an advanced math concept with an AI tutor and the next hour working on a collaborative project with a team from a different grade.</p>
+                </div>
+                <div>
+                    <h4 id="modal-1-p2-heading" class="text-xl font-semibold text-gray-800 mb-2">The "Why"</h4>
+                    <p id="modal-1-p2-body" class="text-gray-600">The AI knows that mass-production schooling creates knowledge gaps and boredom. This change ensures you’re always challenged, never overwhelmed, and always learning the most relevant thing **you** need next.</p>
+                </div>
+            </div>
+
+            <button type="button" class="modal-close-btn mt-8 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal 2: Curriculum Shift: Skills Over Facts -->
+    <div id="modal-2" data-modal-id="2" class="modal-bg hidden fixed inset-0 z-50 flex items-center justify-center p-4" aria-labelledby="modal-2-title" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-8 relative">
+            <h3 id="modal-2-title" class="text-3xl font-bold text-green-600 mb-6 border-b pb-2">2. The Curriculum Shift: Skills Over Facts</h3>
+            
+            <div class="space-y-6">
+                <div>
+                    <h4 id="modal-2-p1-heading" class="text-xl font-semibold text-gray-800 mb-2">Goodbye Memorization</h4>
+                    <p id="modal-2-p1-body" class="text-gray-600">Subjects like basic algebra formulas or historical dates you can look up in two seconds? Gone. The AI takes care of those routine facts.</p>
+                </div>
+                <div>
+                    <h4 id="modal-2-p2-heading" class="text-xl font-semibold text-gray-800 mb-2">Hello Critical Thinking</h4>
+                    <p id="modal-2-p2-body" class="text-gray-600">Every course would revolve around **critical thinking, complex problem-solving, and creativity**. Since AI will automate most cognitive tasks, the only valuable human skills remaining are those involving judgment, ethics, synthesis, and innovation.</p>
+                </div>
+                <div>
+                    <h4 id="modal-2-p3-heading" class="text-xl font-semibold text-gray-800 mb-2">Integrated Learning</h4>
+                    <p id="modal-2-p3-body" class="text-gray-600">Instead of "Chemistry" class, you’d have a **"Resource Sustainability" module** where you apply chemistry, economics, and ethics to solve a local pollution problem. Subjects would merge to teach you how the real world works.</p>
+                </div>
+            </div>
+
+            <button type="button" class="modal-close-btn mt-8 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal 3: Teachers Become Expert Mentors -->
+    <div id="modal-3" data-modal-id="3" class="modal-bg hidden fixed inset-0 z-50 flex items-center justify-center p-4" aria-labelledby="modal-3-title" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-8 relative">
+            <h3 id="modal-3-title" class="text-3xl font-bold text-yellow-600 mb-6 border-b pb-2">3. Teachers Become Expert Mentors</h3>
+            
+            <div class="space-y-6">
+                <div>
+                    <h4 id="modal-3-p1-heading" class="text-xl font-semibold text-gray-800 mb-2">No More Lecturing</h4>
+                    <p id="modal-3-p1-body" class="text-gray-600">Your human teacher (now called a "Human Mentor" or "Coach") would no longer stand at a whiteboard delivering information. The AI handles all lecture content, grading, and individualized instruction.</p>
+                </div>
+                <div>
+                    <h4 id="modal-3-p2-heading" class="text-xl font-semibold text-gray-800 mb-2">Focus on EQ and Ethics</h4>
+                    <p id="modal-3-p2-body" class="text-gray-600">Mentors focus 100% on **emotional intelligence (EQ), collaboration, discussion, and ethical debate**. They guide your team projects, mediate conflicts, and help you develop the human judgment necessary to use AI responsibly.</p>
+                </div>
+            </div>
+
+            <button type="button" class="modal-close-btn mt-8 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:text-sm">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal 4: Gamified Progress: XP and Mastery -->
+    <div id="modal-4" data-modal-id="4" class="modal-bg hidden fixed inset-0 z-50 flex items-center justify-center p-4" aria-labelledby="modal-4-title" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-8 relative">
+            <h3 id="modal-4-title" class="text-3xl font-bold text-red-600 mb-6 border-b pb-2">4. Gamified Progress: XP and Mastery</h3>
+            
+            <div class="space-y-6">
+                <div>
+                    <h4 id="modal-4-p1-heading" class="text-xl font-semibold text-gray-800 mb-2">Level Up, Don't Cram</h4>
+                    <p id="modal-4-p1-body" class="text-gray-600">Say goodbye to grades (A, B, C) and high-stakes standardized tests. The AI knows these are outdated, stressful, and don't measure real ability. Instead, the focus is on **advancement**. You progress not by scoring points on a test, but by proving your competence.</p>
+                </div>
+                <div>
+                    <h4 id="modal-4-p2-heading" class="text-xl font-semibold text-gray-800 mb-2">Achievement Unlocked: Mastery Units</h4>
+                    <p id="modal-4-p2-body" class="text-gray-600">Your progress is tracked using a live **XP (Experience Points) total** and **Mastery Units**. When you complete a module (e.g., "Advanced Data Synthesis" or "Effective Team Communication"), the AI verifies your skill application through projects and simulations. Once verified, you earn an **Achievement Badge** and the unit is unlocked, proving permanent mastery. This is the new transcript.</p>
+                </div>
+                <div>
+                    <h4 id="modal-4-p3-heading" class="text-xl font-semibold text-gray-800 mb-2">High-Level Quests and Ranks</h4>
+                    <p id="modal-4-p3-body" class="text-gray-600">By your final years, your learning path is defined by **High-Level Quests**—large, complex projects that simulate professional work (e.g., "Design a Local Renewable Energy Grid"). Successfully completing these Quests determines your **Rank**, which directly aligns you with specific career pipelines or advanced academic institutions.</p>
+                </div>
+            </div>
+
+            <button type="button" class="modal-close-btn mt-8 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
+                Close
+            </button>
+        </div>
+    </div>
+</body>
+</html>
